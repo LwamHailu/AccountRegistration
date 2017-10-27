@@ -1,0 +1,36 @@
+<div class="col-md-6 col-md-offset-3">
+    <h2>Login</h2>
+    <div *ngIf="isValid">
+        <div class="alert alert-success">You registered succesfully!!</div>
+    </div>
+
+
+    <form name="form" (ngSubmit)="login(f.value, f.valid)" #f="ngForm" novalidate>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" class="form-control" [(ngModel)]="user.email" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                #email="ngModel">
+            <div *ngIf="f.submitted &&  !email.valid" class="alert alert-danger"> Email is required and format should be <i>lwi@doe.com</i>.</div>
+           <div *ngIf="emailCheck" class="alert alert-danger"> There is no account registered with this email or password.</div>
+    
+            </div>
+            <div class="form-group">
+                <label for="password"> Password</label>
+                <input type="password" name="password" class="form-control" [(ngModel)]="user.password" required #password="ngModel" validateEqual="confirmPassword"
+                    reverse="true">
+                <div *ngIf=" f.submitted &&!password.valid  " class="alert alert-danger"> Password required </div>
+                 
+            </div>
+
+            <div class="form-group">
+                <!--  Link to your log in-->
+                <a href="/register">Create  an account</a><br>
+                <button [disabled]="loading" class="btn btn-primary">Login</button>
+            </div>
+    </form>
+   
+
+
+
+
+    </div>
