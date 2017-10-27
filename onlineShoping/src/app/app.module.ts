@@ -10,7 +10,7 @@ import { HttpModule } from '@angular/http';
 import { ValidateEqualDirective } from './validate-equal.directive';
 import { Router, CanActivate } from '@angular/router';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { AuthguardGuard } from './authguard.guard';
+
 
 const appRoutes:Routes=[
   {
@@ -24,7 +24,7 @@ const appRoutes:Routes=[
   {
     path:'user-profile/:email',
     component:UserProfileComponent,
-   canActivate:[ AuthguardGuard]
+
   },
   
   {

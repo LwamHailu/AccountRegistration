@@ -11,7 +11,7 @@ export class LoginComponent implements OnInit {
   public user: User;
   public isValid: boolean;
   public userFromDB: any;
-  public emailCheck:boolean;
+  public isExist:boolean;
 
   constructor(private dataService: DataService, private router: Router) {
 
@@ -26,13 +26,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  // this.dataService.getUserByEmail(user.email).subscribe(
-  //           (data) => {
-  //               this.userFromDB = data.json();
-  //               if(this.userFromDB != null){
-  //                   this.emailExist = true;
-  //                   console.log("User with email already exist, please try another email.");
-  //               }
+ 
   login(user:User, isValid: boolean) {
     this.dataService.getUserByEmail(user.email).subscribe(
       data => {
@@ -43,11 +37,11 @@ export class LoginComponent implements OnInit {
           this.router.navigate(["user-profile", this.user.email]);
         }
         else{
-           this.isValid=false;
+           this.isExist=true;
         }
         }
         else{
-               this.emailCheck=true;
+               this.isExist=true;
       }
       }
     )
